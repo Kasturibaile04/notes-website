@@ -1,4 +1,4 @@
-#BlogVerse
+## BlogVerse
 
 BlogVerse is a full-stack web application built with React on the frontend and Node.js/Express on the backend. The project includes user authentication, protected routes, a blog-style home page, and a course section for learning content.
 
