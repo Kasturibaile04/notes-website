@@ -3,12 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context-api/AuthContext';
 
 function Navbar() {
-  const { token, logout } = useAuth();
+  const { token, logout, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate('/');
   };
 
   return (
@@ -37,6 +37,10 @@ function Navbar() {
             Course
           </Link>
 
+          {isAdmin && (
+            <span className='text-sm font-semibold text-green-600'>Admin</span>
+          )}
+
           {token ? (
             <button
               onClick={handleLogout}
@@ -46,7 +50,7 @@ function Navbar() {
             </button>
           ) : (
             <Link
-              to="/login"
+              to="/"
               className='bg-blue-600 text-white rounded-md hover:bg-blue-800 px-5 py-2 font-medium transition'
             >
               Login

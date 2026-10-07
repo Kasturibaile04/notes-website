@@ -7,6 +7,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -14,14 +15,18 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:3000/api/user/login', {
+      const response = await axios.post('http://localhost:3000/api/user/login', 
+      {
         email,
         password,
       });
-      login(response.data.token); // store the token in context / localStorage
-      navigate('/'); // redirect to home after successful login
-    } catch (error) {
-      alert(error.response?.data?.message || 'Login failed');
+
+      const userData = response.data.existingUser || response.data.user || {};
+      login(response.data.token, userData);
+      navigate('/');
+    } 
+    catch (error) {
+      alert(error.response?.data?.message || error.response?.data?.error || 'Login failed');
     } finally {
       setLoading(false);
     }

@@ -18,8 +18,7 @@ function Navbar() {
         <img
           src="/logo.png"
           alt="logo"
-          className="h-16 w-auto"
-        />
+          className="h-16 w-auto"/>
 
         <div className='flex items-center gap-8'>
 

@@ -8,7 +8,7 @@ function Signup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [role, setRole] = useState('user');
 
   const navigate = useNavigate()
 
@@ -20,6 +20,7 @@ const handleSignup = async () => {
         username,
         email,
         password,
+        role,
       }
     );
 
@@ -62,7 +63,14 @@ const handleSignup = async () => {
           className="border border-gray-300 rounded-md px-4 py-2 mb-4 w-full"
         />
 
-
+        <select
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          className="border border-gray-300 rounded-md px-4 py-2 mb-4 w-full"
+        >
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
 
         <button  onClick={handleSignup}
         className="bg-blue-600 text-white rounded-md hover:bg-blue-800 px-5 py-2 font-medium transition w-full">
